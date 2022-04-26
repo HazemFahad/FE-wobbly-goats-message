@@ -1,25 +1,17 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import "./index.css";
-import Home from "./Home/Home";
-import ChatRoom from "./ChatRoom/ChatRoom";
-
-const [username, setUsername] = useState("");
+import Home from './Home/Home'
+import ChatRoom from './ChatRoom/ChatRoom'
 
 function App() {
+  const [username, setUsername] = React.useState('')
   return (
     <Router>
-      <Switch>
-        <Route exact path="/" element={<Home setUsername={setUsername} />} />
-        <Route
-          exact
-          path="/:roomId"
-          element={<ChatRoom username={username} />}
-        />
-      </Switch>
+      <Route exact path="/" element={<Home setUsername={setUsername} />} />
+      <Route exact path="/:roomId" element={<ChatRoom username={username} />} />
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App
