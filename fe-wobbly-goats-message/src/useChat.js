@@ -9,10 +9,12 @@ const useChat = (roomId) => {
 
   useEffect(() => {
     socketRef.current = socketIOClient(SOCKET_SERVER_URL, {
+      transports: ["websocket"],
       query: { roomId },
     });
 
     socketRef.current.on("sendMessage", (message) => {
+      console.log(message);
       const incomingMessage = {
         ...message,
         ownedByCurrentUser: message.senderId === socketRef.current.id,
