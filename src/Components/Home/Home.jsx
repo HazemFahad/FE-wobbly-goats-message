@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Container, Form, Card } from "react-bootstrap";
 import useRooms from "../../hooks/useRooms";
 
-const Home = ({ setRoomId, setUsername }) => {
+const Home = ({ setRoomId, setUsername, setAvatar }) => {
   const { rooms } = useRooms();
 
   const handleUserNameChange = (event) => {
@@ -12,6 +12,11 @@ const Home = ({ setRoomId, setUsername }) => {
   const handleRoomChange = (event) => {
     setRoomId(event.target.value);
   };
+
+  const handleAvatarChange = (event) => {
+    setAvatar(event.target.value);
+  };
+
   return (
     <Container>
       <Card style={{ width: "28rem", margin: "auto" }} className="mt-5">
@@ -26,6 +31,15 @@ const Home = ({ setRoomId, setUsername }) => {
                 type="text"
                 placeholder="Name"
                 onChange={handleUserNameChange}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Your avatar URL:</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Avatar URL"
+                onChange={handleAvatarChange}
               ></Form.Control>
             </Form.Group>
 

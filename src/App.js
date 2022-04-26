@@ -6,6 +6,7 @@ import ChatRoom from "./Components/ChatRoom/ChatRoom";
 
 function App() {
   const [username, setUsername] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [roomId, setRoomId] = useState("");
 
   return (
@@ -13,12 +14,20 @@ function App() {
       <Route
         exact
         path="/"
-        element={<Home setUsername={setUsername} setRoomId={setRoomId} />}
+        element={
+          <Home
+            setUsername={setUsername}
+            setRoomId={setRoomId}
+            setAvatar={setAvatar}
+          />
+        }
       />
       <Route
         exact
         path="/chat"
-        element={<ChatRoom username={username} roomId={roomId} />}
+        element={
+          <ChatRoom username={username} roomId={roomId} avatar={avatar} />
+        }
       />
     </Routes>
   );

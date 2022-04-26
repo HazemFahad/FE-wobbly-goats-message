@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Container, Form, Card } from "react-bootstrap";
+import { Container, Form, Card, Image } from "react-bootstrap";
 
 import useChat from "../../hooks/useChat";
 
-const ChatRoom = ({ username, roomId }) => {
+const ChatRoom = ({ username, roomId, avatar }) => {
   const { messages, sendMessage } = useChat(username, roomId);
   const [newMessage, setNewMessage] = useState("");
 
@@ -20,25 +20,31 @@ const ChatRoom = ({ username, roomId }) => {
     <Container>
       <Card className="mt-5">
         <Card.Header>
-          <Card.Title className="room-name">Room: {roomId}, You looged in as {username}</Card.Title>
+          <Card.Title className="room-name">
+            Room: {roomId}, You logged in as {username}
+          </Card.Title>
         </Card.Header>
         <Card.Body>
           <div className="imessage">
-              {messages.map((message, i) => (
-                <>
-                
+            {messages.map((message, i) => (
+              <>
+                <Image
+                  src={avatar}
+                  roundedCircle
+                  height={40}
+                  width={40}
+                ></Image>
+
                 <p
                   key={i}
                   className={`message-item ${
-                    message.ownedByCurrentUser
-                      ? "from-them"
-                      : "from-me"
+                    message.ownedByCurrentUser ? "from-them" : "from-me"
                   }`}
                 >
                   {message.username}: {message.text}
                 </p>
-                </>
-              ))}
+              </>
+            ))}
           </div>
           <Form.Control
             as="textarea"
