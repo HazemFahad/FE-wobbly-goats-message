@@ -1,9 +1,10 @@
-import React from "react";
+import { useState, useEffect} from "react";
+import {useParams} from 'react-router-dom';
 
-const ChatRoom = (props) => {
-  const { roomId } = props.match.params;
+const ChatRoom = ({username}) => {
+  const { roomId } = useParams();
   const { messages, sendMessage } = useChat(roomId);
-  const [newMessage, setNewMessage] = React.useState("");
+  const [newMessage, setNewMessage] = useState("");
 
   const handleNewMessageChange = (event) => {
     setNewMessage(event.target.value);
@@ -26,7 +27,7 @@ const ChatRoom = (props) => {
                 message.ownedByCurrentUser ? "my-message" : "received-message"
               }`}
             >
-              {message.body}
+              {username}: {message.body}
             </li>
           ))}
         </ol>
