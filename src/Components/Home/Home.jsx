@@ -12,7 +12,6 @@ const Home = ({ setRoomId, setUsername, setAvatar }) => {
   const handleRoomChange = (event) => {
     setRoomId(event.target.value);
   };
-
   const handleAvatarChange = (event) => {
     setAvatar(event.target.value);
   };

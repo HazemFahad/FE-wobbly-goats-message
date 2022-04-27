@@ -1,3 +1,3 @@
-let API_URL = "http://wobbly-goats-message.herokuapp.com/";
+let API_URL = "https://wobby-messenger.herokuapp.com/";
 
 module.exports = API_URL;

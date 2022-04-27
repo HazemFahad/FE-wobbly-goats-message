@@ -4,7 +4,7 @@ import { Container, Form, Card, Image } from "react-bootstrap";
 import useChat from "../../hooks/useChat";
 
 const ChatRoom = ({ username, roomId, avatar }) => {
-  const { messages, sendMessage } = useChat(username, roomId);
+  const { messages, sendMessage } = useChat(username, roomId, avatar);
   const [newMessage, setNewMessage] = useState("");
 
   const handleNewMessageChange = (event) => {
@@ -26,25 +26,29 @@ const ChatRoom = ({ username, roomId, avatar }) => {
         </Card.Header>
         <Card.Body>
           <div className="imessage">
-            {messages.map((message, i) => (
-              <>
-                <Image
-                  src={avatar}
-                  roundedCircle
-                  height={40}
-                  width={40}
-                ></Image>
+            {messages.map((message, i) => {
+              console.log(message.username);
+              console.log(message.text);
+              console.log(message.avatar);
 
-                <p
-                  key={i}
-                  className={`message-item ${
-                    message.ownedByCurrentUser ? "from-them" : "from-me"
-                  }`}
-                >
-                  {message.username}: {message.text}
-                </p>
-              </>
-            ))}
+              return (
+                <>
+                  <p
+                    key={i}
+                    className={`message-item ${
+                      message.ownedByCurrentUser ? "from-them" : "from-me"
+                    }`}
+                  >
+                    <Image
+                      className="avatar__img"
+                      roundedCircle
+                      src={message.avatar}
+                    ></Image>
+                    <b>{message.username}</b>: {message.text}
+                  </p>
+                </>
+              );
+            })}
           </div>
           <Form.Control
             as="textarea"
